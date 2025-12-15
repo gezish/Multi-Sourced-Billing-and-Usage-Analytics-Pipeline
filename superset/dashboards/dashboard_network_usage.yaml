@@ -1,0 +1,4 @@
+dashboard_title: Network Usage Analytics
+charts:
+  - Daily Network Usage
+  - Peak Usage Heatmap

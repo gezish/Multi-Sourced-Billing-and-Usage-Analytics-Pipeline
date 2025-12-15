@@ -1,0 +1,9 @@
+slice_name: Revenue by Channel
+viz_type: bar
+params:
+  datasource: telecom_recharge_txn
+  groupby:
+    - channel
+  metrics:
+    - sum__amount
+  show_legend: true

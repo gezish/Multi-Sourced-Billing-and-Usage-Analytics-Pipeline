@@ -1,0 +1,5 @@
+slice_name: Total Active Customers
+viz_type: big_number_total
+params:
+  datasource: telecom_customer_analytics
+  metric: count_distinct__msisdn

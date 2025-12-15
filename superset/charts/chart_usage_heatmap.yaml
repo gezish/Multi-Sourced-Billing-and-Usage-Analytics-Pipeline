@@ -1,0 +1,8 @@
+slice_name: Peak Usage Heatmap
+viz_type: heatmap
+params:
+  datasource: telecom_usage_cdr
+  x_axis: event_hour
+  y_axis: event_date
+  metric: sum__volume_mb
+  normalize_across: heatmap

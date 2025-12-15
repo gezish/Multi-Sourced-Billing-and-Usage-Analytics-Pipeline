@@ -1,0 +1,8 @@
+slice_name: Usage by Customer Segment
+viz_type: bar
+params:
+  datasource: telecom_customer_analytics
+  groupby:
+    - segment
+  metrics:
+    - sum__total_usage_mb

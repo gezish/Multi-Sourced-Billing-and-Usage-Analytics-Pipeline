@@ -1,0 +1,11 @@
+slice_name: Daily Network Usage
+viz_type: echarts_timeseries_line
+params:
+  datasource: telecom_usage_cdr
+  time_column: event_time
+  time_grain_sqla: P1D
+  metrics:
+    - sum__volume_mb
+  groupby:
+    - event_type
+  show_legend: true

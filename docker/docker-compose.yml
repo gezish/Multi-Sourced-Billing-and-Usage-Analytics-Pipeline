@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  sftp:
+    image: atmoz/sftp
+    container_name: sftp
+    ports:
+      - "2222:22"
+    volumes:
+      - ./sftp_data:/home/data/upload
+    command: data:pass:1001
+
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    environment:
+      - CLUSTER_NAME=telecom
+    ports:
+      - "9870:9870"
+    volumes:
+      - namenode:/hadoop/dfs/name
+
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode
+    depends_on:
+      - namenode
+    volumes:
+      - datanode:/hadoop/dfs/data
+
+  hbase:
+    image: harisekhon/hbase
+    container_name: hbase
+    ports:
+      - "16010:16010"
+      - "9090:9090"
+
+  superset:
+    image: apache/superset
+    container_name: superset
+    ports:
+      - "8088:8088"
+    environment:
+      - SUPERSET_SECRET_KEY=telecomsecret
+
+  airflow:
+    build: ../airflow
+    container_name: airflow
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../airflow/dags:/opt/airflow/dags
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+
+volumes:
+  namenode:
+  datanode:
